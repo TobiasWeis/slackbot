@@ -9,7 +9,6 @@ Config = ConfigParser.ConfigParser()
 Config.read("settings.cfg")
 slack_token = Config.get("Auth", "Token")
 print "Token: ", slack_token
-#slack_token = "xoxb-162589215410-Donj3LkEYbkhZqkA5sATfhMS"
 sc = SlackClient(slack_token)
 
 def get_user_from_id(userid):
@@ -17,9 +16,6 @@ def get_user_from_id(userid):
         payload = {'token':slack_token, 'user':userid}
         r = requests.get('https://slack.com/api/users.info', params=payload)
         response = r.json()
-        print "------"
-        print response
-        print "------"
         return response["user"]["name"]
     except:
         return "ResponseError"
